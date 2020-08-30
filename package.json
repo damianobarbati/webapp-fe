@@ -8,7 +8,7 @@
     "type": "module",
     "scripts": {
         "eslint": "eslint --ignore-path .gitignore",
-        "build": "yarn build:$NODE_ENV",
+        "build": "yarn build:${NODE_ENV:-development}",
         "build:development": "parcel src/index.html --open",
         "build:staging": "parcel build src/index.html --no-cache --no-autoinstall --no-source-maps && gzip -rk dist/*",
         "build:production": "parcel build src/index.html --no-cache --no-autoinstall --no-source-maps && gzip -rk dist/*"
@@ -20,7 +20,7 @@
         "jwt-decode": "^2.2.0",
         "lodash-es": "^4.17.15",
         "preact": "^10.4.8",
-        "react-hook-form": "^6.6.0",
+        "react-hook-form": "^6.7.0",
         "react-jss": "^10.4.0",
         "react-router-dom": "^5.2.0",
         "recharts": "^1.8.5",
