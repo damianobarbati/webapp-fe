@@ -1,53 +1,78 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-
-import { NavLink } from 'react-router-dom';
+import cx from 'classnames';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const useStyles = createUseStyles({
-    root: {
-        width: 'max-content',
-        margin: '50px auto 0',
-        display: 'grid',
-        gridAutoFlow: 'row',
-        gridTemplateColumns: 'max-content',
-        gridRowGap: '15px',
-        justifyItems: 'center',
-    },
-    link: {
-        color: 'inherit',
-        textDecoration: 'none',
-    },
-    selectedLink: {
-        textDecoration: 'underline',
-    },
+  root: {
+    width: 'max-content',
+    margin: '50px auto 0',
+    display: 'grid',
+    gridAutoFlow: 'row',
+    gridTemplateColumns: 'max-content',
+    gridRowGap: '15px',
+    justifyItems: 'center',
+  },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  selectedLink: {
+    textDecoration: 'underline',
+  },
 });
 
 const Nav = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const location = useLocation();
 
-    return (
-        <ul className={classes.root}>
-            <li className={classes.li}>
-                <NavLink to={'/'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>{`${window.location.pathname === '/' ? 'Home' : 'Back to Home'}`}</NavLink>
-            </li>
+  const className = ({ isActive }) => cx(classes.link, isActive && classes.selectedLink);
 
-            <li className={classes.li}>
-                <NavLink to={'/responsive-image'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Responsive image</NavLink>
-            </li>
+  const prefetchChartComponent = () => import('../views/Chart.js');
 
-            <li className={classes.li}>
-                <NavLink to={'/chart-async'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Async chart loading</NavLink>
-            </li>
+  return (
+    <ul className={classes.root}>
+      <li>
+        <NavLink className={className} to={'/'}>{`${location.pathname === '/' ? 'Home' : 'Back to Home'}`}</NavLink>
+      </li>
 
-            <li className={classes.li}>
-                <NavLink to={'/form'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Form</NavLink>
-            </li>
+      <li>
+        <NavLink className={className} to={'/resume'}>
+          Resume
+        </NavLink>
+      </li>
 
-            <li className={classes.li}>
-                <NavLink to={'/jss-reset-typography'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>jss-reset typography</NavLink>
-            </li>
-        </ul>
-    );
+      <li>
+        <NavLink className={className} to={'/responsive-image'}>
+          Responsive image
+        </NavLink>
+      </li>
+
+      <li onMouseEnter={prefetchChartComponent}>
+        <NavLink className={className} to={'/chart'}>
+          Chart (prefetched)
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink className={className} to={'/typography'}>
+          Typography
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink className={className} to={'/app/auth'}>
+          Auth
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink className={className} to={'/app/profile'}>
+          Profile
+        </NavLink>
+      </li>
+    </ul>
+  );
 };
 
 export default Nav;

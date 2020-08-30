@@ -1,46 +1,46 @@
-import React from 'react';
-import { Router as BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout.js';
-import Home from './components/Home.js';
-import Chart from './components/Chart.js';
-import Typography from './components/Typography.js';
 import Spinner from './components/Spinner.js';
-import Heartbeat from './components/Heartbeat.js';
-import ImageSpinner from './components/ImageSpinner.js';
-import ResponsiveImage from './components/ResponsiveImage.js';
+import AuthGate from './components/AuthGate.js';
+import Profile from './views/Profile.js';
 
-const Auth = () => <h1>Auth</h1>;
-const NotFound = () => <h1 style={{ textAlign: 'center' }}>Not Found</h1>
-const isAuthenticated = () => window.localStorage.getItem('token');
+const Home = lazy(() => import('./views/Home.js'));
+const Resume = lazy(() => import('./views/Resume.js'));
+const Chart = lazy(() => import('./views/Chart.js'));
+const Typography = lazy(() => import('./views/Typography.js'));
+const Heartbeat = lazy(() => import('./views/Heartbeat.js'));
+const ImageSpinner = lazy(() => import('./views/ImageSpinner.js'));
+const ResponsiveImage = lazy(() => import('./views/ResponsiveImage.js'));
 
-export const history = createBrowserHistory();
+const Auth = lazy(() => import('./views/Auth.js'));
 
-history.listen(({ pathname }) => {
-    window.document.title = pathname.slice(1);
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-});
+const NotFound = () => <h1>Not Found</h1>;
 
-export const Router = () => {
-    return (
-        <BrowserRouter history={history}>
-            <Layout>
-                <Switch>
-                    <Route path={'/'} exact={true} component={Home} />
-                    <Route path={'/chart-async'} exact={true} component={Chart} />
-                    <Route path={'/jss-reset-typography'} exact={true} component={Typography} />
-                    <Route path={'/responsive-image'} exact={true} component={ResponsiveImage} />
-                    <Route path={'/auth'} exact={true} render={props => !isAuthenticated() ? <Auth {...props} /> : <Redirect to={'/'} />} />
-                    <Route path={'/spinner'} exact={true} component={() => <Spinner />} />
-                    <Route path={'/heartbeat'} exact={true} component={() => <Heartbeat />} />
-                    <Route path={'/img'} exact={true} component={() => <ImageSpinner />} />
-                    <Route path={'/*'} exact={true} component={NotFound} />
-                </Switch>
-            </Layout>
-        </BrowserRouter>
-    );
+const Router = () => {
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route path={'/'} element={<Home />} />
+            <Route path={'/resume'} element={<Resume />} />
+            <Route path={'/chart'} element={<Chart />} />
+            <Route path={'/typography'} element={<Typography />} />
+            <Route path={'/responsive-image'} element={<ResponsiveImage />} />
+            <Route path={'/heartbeat'} element={<Heartbeat />} />
+            <Route path={'/img'} element={<ImageSpinner />} />
+            <Route path={'/home'} element={<Home />} />
+            <Route path={'/app'}>
+              <Route path={'/app/auth'} element={<AuthGate if_auth={false} element={<Auth />} />} />
+              <Route path={'/app/profile'} element={<AuthGate if_auth={true} element={<Profile />} />} />
+            </Route>
+            <Route path={'/*'} element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
+    </BrowserRouter>
+  );
 };
 
 export default Router;

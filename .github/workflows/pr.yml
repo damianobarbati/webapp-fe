@@ -3,11 +3,12 @@ name: pr
 on:
   pull_request:
     branches:
-      - 'master'
+      - main
 
 jobs:
   test-build:
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout
         uses: actions/checkout@v2

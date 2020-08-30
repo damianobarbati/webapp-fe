@@ -3,10 +3,12 @@ name: commit
 on:
   push:
     branches:
-      - 'master'
+      - main
 
 jobs:
   deploy-staging:
+    if: ${{ false }}  # disable for now
+
     runs-on: ubuntu-latest
     steps:
       - name: checkout

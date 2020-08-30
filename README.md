@@ -1,18 +1,37 @@
 # webapp-fe
 
-A webapp starter-kit leveraging the best technologies available until 2021 and embracing the KISS principle.  
+Webapp starter-kit based on:
+- parcel (bundler)
+- react
+- jss (styling)
+- tailwind (styling)
+- react-query (data fetching)
+- redux-toolkit (state management)
+- react hook form (forms)
+- react testing library (unit testing)
+- playwright (e2e testing)
+- miragejs (API mocking)
 
-Stack:
-- parcel v2
-- (p)react v17
-- jss v10
+Current app size is ~130KB gzipped.
 
 ## Requirements
-- node v12: `brew install nvm && nvm install 12 && nvm use 12`
+- node: `brew install nvm && nvm install < .nvmrc && nvm use < .nvmrc`
 
 ## Development
-Start environment for full-stack development:
-```bash
+
+Start development environment:
+```sh
+nvm install
 yarn install
-NODE_ENV=development yarn build
+yarn build
+```
+
+## Deployment
+
+Build and serve production build:
+```sh
+nvm install
+yarn install
+NODE_ENV=production yarn build
+yarn serve
 ```

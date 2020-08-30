@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import Nav from './Nav.js';
 
 const Layout = ({ children }) => {
-    return (
-        <>
-            {children}
-            <Nav />
-        </>
-    );
+  return (
+    <>
+      {children}
+      <Nav />
+    </>
+  );
 };
 
 Layout.propTypes = {
-    children: PropTypes.any,
+  children: PropTypes.any,
 };
 
 export default Layout;

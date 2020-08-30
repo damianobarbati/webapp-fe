@@ -1,0 +1,25 @@
+@import "./common.css";
+@import "./button.css";
+@import "./form.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Muli';
+  font-weight: normal;
+  src: url(../../node_modules/typeface-muli/files/muli-latin-400.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Muli';
+  font-weight: bold;
+  src: url(../../node_modules/typeface-muli/files/muli-latin-700.woff2) format('woff2');
+}
+
+@layer base {
+  html, body {
+    font-family: Muli;
+  }
+}
