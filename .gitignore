@@ -1,5 +1,6 @@
 dist/
+parcel-bundle-reports/
 node_modules/
-.cache/
+.parcel-cache/
 .idea/
 .DS_Store

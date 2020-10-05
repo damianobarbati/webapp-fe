@@ -9,9 +9,9 @@
     "scripts": {
         "eslint": "eslint --ignore-path .gitignore",
         "build": "yarn build:${NODE_ENV:-development}",
-        "build:development": "parcel src/index.html --open",
-        "build:staging": "parcel build src/index.html --no-cache --no-autoinstall --no-source-maps && gzip -rk dist/*",
-        "build:production": "parcel build src/index.html --no-cache --no-autoinstall --no-source-maps && gzip -rk dist/*"
+        "build:development": "parcel src/index.html --open --no-cache",
+        "build:staging": "PARCEL_BUNDLE_ANALYZER=1 parcel build src/index.html --no-cache",
+        "build:production": "PARCEL_BUNDLE_ANALYZER=1 parcel build src/index.html --no-cache"
     },
     "dependencies": {
         "axios": "^0.20.0",
@@ -33,11 +33,11 @@
         "@babel/preset-react": "^7.10.4",
         "core-js": "^3.6.5",
         "eslint": "^7.10.0",
-        "eslint-plugin-jest": "^24.0.2",
+        "eslint-plugin-jest": "^24.1.0",
         "eslint-plugin-react": "^7.21.3",
         "eslint-plugin-react-hooks": "^4.1.2",
         "jest": "^26.5.0",
-        "parcel": "1.12.4",
+        "parcel": "^2.0.0-nightly.416",
         "parcel-plugin-bundle-visualiser": "^1.2.0",
         "parcel-plugin-notifier": "^1.0.0",
         "parcel-plugin-nuke-dist": "^1.0.1"

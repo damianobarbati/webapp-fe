@@ -22,5 +22,6 @@ const App = () => (
 
 render(<App />, document.body);
 
-if (process.env.NODE_ENV === 'development' && module.hot)
-    module.hot.accept();
+// parcel bug: https://github.com/parcel-bundler/parcel/issues/1317#issuecomment-416097040
+if (module && module.hot)
+    module.hot.accept(() => window.location.reload());

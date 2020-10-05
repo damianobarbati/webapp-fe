@@ -1,6 +1,6 @@
 import { jss } from 'react-jss';
 import { reset, typography } from 'jss-reset';
-import font from 'typeface-muli/files/muli-latin-400.woff2';
+import font from 'url:typeface-muli/files/muli-latin-400.woff2';
 
 jss.createStyleSheet(reset, { index: 1, meta: 'reset' }).attach();
 jss.createStyleSheet(typography, { index: 1, meta: 'reset' }).attach();
