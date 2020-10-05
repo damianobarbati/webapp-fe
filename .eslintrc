@@ -10,19 +10,24 @@
     "env": {
         "browser": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "jest": true
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks",
+        "jest"
     ],
     "settings": {
         "react": {
-            "version": "detect"
+            "version": "17"
         }
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jest/recommended"
     ],
     "rules": {
         "no-console": "off"
