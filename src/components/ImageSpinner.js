@@ -1,5 +1,5 @@
 // https://codepen.io/anon/pen/Rveabd
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
@@ -14,19 +14,30 @@ const useStyles = createUseStyles({
         background-repeat: no-repeat;
         background-position: center;
     `,
+    img: `
+        max-width: 500px;
+        height: auto;
+        border: 1px solid black;
+        transition: height 1s ease;
+        margin: auto;
+    `
 });
 
 const ImageSpinner = ({ ...props }) => {
     const classes = useStyles();
+    const timeout = useRef(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const timeout = setTimeout(() => document.querySelector('img').src = 'https://upload.wikimedia.org/wikipedia/commons/9/95/Big_Pine_landscape.jpg', 2000);
-        return () => window.clearTimeout(timeout);
+        timeout.current = setTimeout(() => setLoading(false), 2000);
+        return () => window.clearTimeout(timeout.current);
     }, []);
 
-    return (
-        <img className={classes.root} {...props} />
-    );
+    if (loading) {
+        return <img className={classes.root} {...props} />
+    }
+
+    return <img src={'https://upload.wikimedia.org/wikipedia/commons/9/95/Big_Pine_landscape.jpg'} className={classes.img} {...props} />
 };
 
 export default ImageSpinner;
