@@ -27,23 +27,23 @@ const Nav = () => {
 
     return (
         <ul className={classes.root}>
-            <li className={classes.li}>
+            <li>
                 <NavLink to={'/'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>{`${window.location.pathname === '/' ? 'Home' : 'Back to Home'}`}</NavLink>
             </li>
 
-            <li className={classes.li}>
+            <li>
                 <NavLink to={'/responsive-image'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Responsive image</NavLink>
             </li>
 
-            <li className={classes.li}>
+            <li>
                 <NavLink to={'/chart-async'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Async chart loading</NavLink>
             </li>
 
-            <li className={classes.li}>
+            <li>
                 <NavLink to={'/form'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>Form</NavLink>
             </li>
 
-            <li className={classes.li}>
+            <li>
                 <NavLink to={'/jss-reset-typography'} exact={true} activeClassName={classes.selectedLink} className={classes.link}>jss-reset typography</NavLink>
             </li>
         </ul>
