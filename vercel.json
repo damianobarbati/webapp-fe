@@ -5,8 +5,13 @@
             "handle": "filesystem"
         },
         {
-            "source": "/.*",
-            "destination": "/index.html"
+            "src": "/",
+            "headers": { "Cache-Control": "no-store" },
+            "continue": true
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
         }
     ]
 }
