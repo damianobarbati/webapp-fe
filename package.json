@@ -6,6 +6,9 @@
     "author": "Damiano Barbati <damiano.barbati@gmail.com> (http://github.com/damianobarbati)",
     "repository": "https://github.com/damianobarbati/webapp-fe",
     "type": "module",
+    "engines": {
+        "node": "14.5.x"
+    },
     "scripts": {
         "eslint": "eslint --ignore-path .gitignore",
         "build": "rm -rf dist; yarn build:${NODE_ENV:-development}",

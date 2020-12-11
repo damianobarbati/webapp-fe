@@ -12,6 +12,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+            node-version: '14'
+
       - name: deploy
         env:
             VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
