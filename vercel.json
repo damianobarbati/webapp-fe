@@ -1,18 +1,15 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "dest": "/index.html"
+    "version": 2,
+    "routes": [
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
+        }
+    ],
+    "github": {
+        "enabled": false
     }
-  ],
-  "github": {
-    "enabled": false
-  },
-  "alias": [
-    "damianobarbati.com"
-  ]
 }
