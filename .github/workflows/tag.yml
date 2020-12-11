@@ -1,0 +1,16 @@
+name: tag
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: deploy
+        run: npx vercel --prod --env NODE_ENV=production
