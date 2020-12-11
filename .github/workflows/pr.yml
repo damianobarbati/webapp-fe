@@ -6,7 +6,7 @@ on:
       - 'master'
 
 jobs:
-  deploy-pr:
+  deploy-branch:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
