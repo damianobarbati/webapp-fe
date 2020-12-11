@@ -5,11 +5,6 @@
             "handle": "filesystem"
         },
         {
-            "src": "/",
-            "headers": { "Cache-Control": "no-store" },
-            "continue": true
-        },
-        {
             "src": "/.*",
             "dest": "/index.html"
         }
