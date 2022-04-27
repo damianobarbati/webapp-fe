@@ -9,11 +9,11 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link href="style/index.css" rel="stylesheet">
   <link rel="shortcut icon" href="../assets/logo.png" />
+  <link rel="preload" href="style/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 </head>
 <body>
 <div id="root" class="container mx-auto m-8"></div>
-<script type="module" src="./index.js"></script>
+<script type="module" defer src="./index.js"></script>
 </body>
 </html>

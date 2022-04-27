@@ -29,6 +29,7 @@ createServer({
   routes() {
     this.urlPrefix = process.env.API_URL;
     this.passthrough(); // pass through all unhandled requests
+    this.logging = process.env.NODE_ENV === 'development';
 
     this.post('/auth/sign-in', (schema, request) => {
       const { email, password } = JSON.parse(request.requestBody);

@@ -17,4 +17,4 @@ jobs:
         env:
           NODE_ENV: production
         run: |
-          DOCKER_BUILDKIT=1 docker build --rm --force-rm --no-cache .
+          DOCKER_BUILDKIT=1 docker build --rm --force-rm --no-cache --build-arg NODE_ENV=production .

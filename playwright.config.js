@@ -2,10 +2,12 @@ import { devices } from '@playwright/test';
 
 export default {
   webServer: {
-    command: 'yarn build && yarn serve',
+    command: process.env.NODE_ENV === 'production' ? 'yarn serve' : 'yarn build && yarn serve',
     url: 'http://localhost',
-    timeout: 3000,
+    timeout: 30000,
   },
+  testDir: '.',
+  testMatch: '*.spec-e2e.js',
   use: {
     baseURL: 'http://localhost/',
     ignoreHTTPSErrors: true,
@@ -15,13 +17,10 @@ export default {
     retries: 1,
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
-    launchOptions: {
-      slowMo: 100,
-    },
   },
   projects: [
     {
-      name: 'chromium',
+      name: 'chrome',
       use: { ...devices['Desktop Chrome'] },
     },
     {
@@ -33,7 +32,7 @@ export default {
       use: { ...devices['Desktop Safari'] },
     },
     {
-      name: 'iPhone 12',
+      name: 'iphone 12',
       use: {
         browserName: 'webkit',
         ...devices['iPhone 12'],

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const AuthGate = ({ if_auth, element }) => {
   const { id } = useSelector(({ app: { id } }) => ({ id }));
+  const navigate = useNavigate();
+
+  // if id changes then handle signOut "redirection" side-effect
+  useEffect(() => {
+    if (!id) navigate('/app/auth');
+  }, [id, navigate]);
 
   if (if_auth) {
     if (id) {

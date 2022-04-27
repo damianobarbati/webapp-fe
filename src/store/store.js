@@ -4,12 +4,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import './storage.js';
 
 // reducers
-import app from './store/app.js';
+import app from './app.js';
 
 const store = configureStore({
   reducer: {
     app,
   },
 });
+
+window.store = store; // useful for inspection with e2e testing tools
 
 export default store;

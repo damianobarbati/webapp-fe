@@ -33,14 +33,14 @@ const Auth = () => {
         <label className="label required" htmlFor={'email'}>
           Email
         </label>
-        <input className="input" type={'email'} {...register('email', { required: true })} />
+        <input id="email" data-testid="email" className="input" type={'email'} {...register('email', { required: true })} />
       </div>
 
       <div className="control">
         <label className="label required" htmlFor={'password'}>
           Password
         </label>
-        <input className="input2" type={'password'} {...register('password', { required: true })} />
+        <input id="password" data-testid="password" className="input" type={'password'} {...register('password', { required: true })} />
       </div>
 
       <div className="control">
@@ -59,7 +59,7 @@ const Auth = () => {
         </select>
       </div>
 
-      <button className="btn btn-blue" disabled={isLoading}>
+      <button data-testid="submit" className="btn btn-blue" disabled={isLoading}>
         Login
       </button>
 
@@ -67,8 +67,16 @@ const Auth = () => {
         By clicking this button you agree with our <a href="#">terms and condition</a>.
       </p>
 
-      {isSuccess && <p className="submit-success">Success.</p>}
-      {isError && <p className="submit-error">{error.message}</p>}
+      {isSuccess && (
+        <p className="submit-success" role="alert">
+          Success.
+        </p>
+      )}
+      {isError && (
+        <p className="submit-error" role="alert">
+          {error.message}
+        </p>
+      )}
     </form>
   );
 };

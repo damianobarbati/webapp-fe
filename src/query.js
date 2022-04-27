@@ -1,11 +1,14 @@
-import { QueryClient } from 'react-query';
+import { QueryClient, QueryCache } from 'react-query';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
+      retry: false,
+      // suspense: true,
     },
   },
 });
 
 export default queryClient;
+
+export const queryCache = new QueryCache();

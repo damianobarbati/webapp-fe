@@ -2,6 +2,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import cx from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../store/app.js';
 
 const useStyles = createUseStyles({
   root: {
@@ -25,10 +27,14 @@ const useStyles = createUseStyles({
 const Nav = () => {
   const classes = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { id } = useSelector(({ app: { id } }) => ({ id }));
 
-  const className = ({ isActive }) => cx(classes.link, isActive && classes.selectedLink);
+  const className = ({ isActive }) => cx(classes.link, isActive && classes.selectedLink, 'cursor-pointer');
 
   const prefetchChartComponent = () => import('../views/Chart.js');
+
+  const signOut = () => dispatch(actions.signOut());
 
   return (
     <ul className={classes.root}>
@@ -60,17 +66,29 @@ const Nav = () => {
         </NavLink>
       </li>
 
-      <li>
-        <NavLink className={className} to={'/app/auth'}>
-          Auth
-        </NavLink>
-      </li>
+      {!id && (
+        <li>
+          <NavLink className={className} to={'/app/auth'}>
+            Auth
+          </NavLink>
+        </li>
+      )}
 
-      <li>
-        <NavLink className={className} to={'/app/profile'}>
-          Profile
-        </NavLink>
-      </li>
+      {!!id && (
+        <li>
+          <NavLink className={className} to={'/app/profile'}>
+            Profile
+          </NavLink>
+        </li>
+      )}
+
+      {!!id && (
+        <li>
+          <a className={className({ isActive: false })} onClick={signOut} href="#">
+            Sign out
+          </a>
+        </li>
+      )}
     </ul>
   );
 };

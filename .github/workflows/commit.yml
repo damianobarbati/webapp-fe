@@ -7,25 +7,29 @@ on:
 
 jobs:
   deploy-staging:
-    if: ${{ false }}  # disable for now
-
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: build and deploy
+      - name: build
         env:
-          ENV: staging
-          HOST: my-staging-host.com
-          PEM: ${{secrets.PEM_STAGING}}
-          DOCKERHUB_USER: damianobarbati
-          DOCKERHUB_TOKEN: ${{secrets.DOCKERHUB_TOKEN}}
+          NODE_ENV: production
         run: |
-          eval `ssh-agent -s`
-          ssh-add - <<< "$PEM"
-          mkdir ~/.ssh
-          ssh-keyscan -p 22 -H "$HOST" >> ~/.ssh/known_hosts
+          DOCKER_BUILDKIT=1 docker build --rm --force-rm --no-cache --build-arg NODE_ENV=production .
 
-          docker login docker.io --username "$DOCKERHUB_USER" --password "$DOCKERHUB_TOKEN"
-          sh deploy.sh "$ENV"
+#      - name: build and deploy
+#        env:
+#          ENV: staging
+#          HOST: my-staging-host.com
+#          PEM: ${{secrets.PEM_STAGING}}
+#          DOCKERHUB_USER: damianobarbati
+#          DOCKERHUB_TOKEN: ${{secrets.DOCKERHUB_TOKEN}}
+#        run: |
+#          eval `ssh-agent -s`
+#          ssh-add - <<< "$PEM"
+#          mkdir ~/.ssh
+#          ssh-keyscan -p 22 -H "$HOST" >> ~/.ssh/known_hosts
+#
+#          docker login docker.io --username "$DOCKERHUB_USER" --password "$DOCKERHUB_TOKEN"
+#          sh deploy.sh "$ENV"

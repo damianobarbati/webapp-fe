@@ -10,12 +10,14 @@
   font-family: 'Muli';
   font-weight: normal;
   src: url(../../node_modules/typeface-muli/files/muli-latin-400.woff2) format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Muli';
   font-weight: bold;
   src: url(../../node_modules/typeface-muli/files/muli-latin-700.woff2) format('woff2');
+  font-display: swap;
 }
 
 @layer base {
