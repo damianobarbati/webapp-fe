@@ -8,7 +8,6 @@ WORKDIR /opt
 
 RUN yarn install --production=false && \
     yarn eslint && \
-    yarn audit && \
     API_MOCKED=1 yarn build && \
     yarn test && \
     yarn test:e2e && \

@@ -24,7 +24,7 @@ const Resume = () => {
         <section>
           <h3>Skills</h3>
           <ul>
-            <li>Javascript / Typescript</li>
+            <li>Javascript</li>
             <li>React</li>
             <li>Nodejs</li>
             <li>PostgreSQL</li>
@@ -76,7 +76,7 @@ const Resume = () => {
         <p>
           Development stack and technologies:
           <ul>
-            <li>JavaScript / Typescript</li>
+            <li>JavaScript</li>
             <li>React</li>
             <li>NodeJS</li>
             <li>PostgreSQL</li>

@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { QueryClientProvider } from 'react-query';
+import preview from 'jest-preview';
 import store from '../store/store.js';
 import queryClient, { queryCache } from '../query.js';
 import Auth from './Auth.js';
@@ -25,6 +26,8 @@ const getComponent = () =>
   );
 
 describe('Auth', () => {
+  // beforeAll(() => preview.debug());
+
   beforeEach(queryCache.clear.bind(queryCache));
 
   it('render', () => {
