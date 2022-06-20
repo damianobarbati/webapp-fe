@@ -26,6 +26,12 @@ yarn install
 yarn build
 ```
 
+To unit and e2e test:
+```sh
+yarn test
+yarn test:e2e
+```
+
 ## Deployment
 
 Build and serve production build:
