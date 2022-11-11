@@ -1,21 +1,17 @@
 # webapp-fe
 
 Webapp starter-kit based on:
-- parcel (bundler)
-- react
-- jss (styling)
-- tailwind (styling)
-- react-query (data fetching)
-- redux-toolkit (state management)
-- react hook form (forms)
-- react testing library (unit testing)
-- playwright (e2e testing)
-- miragejs (API mocking)
+- react v18
+- parcel for bundling
+- tailwind for styling
+- swr for data fetching
+- redux toolkit for state management
+- react hook form for forms handling
+- react testing library for unit testing
+- playwright for e2e testing
+- miragejs for API mocking
 
 Current app size is ~130KB gzipped.
-
-## Requirements
-- node: `brew install nvm && nvm install < .nvmrc && nvm use < .nvmrc`
 
 ## Development
 

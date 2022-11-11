@@ -4,6 +4,7 @@
   ],
   "reporters": [
     "...",
+    "parcel-reporter-prerender",
     "parcel-reporter-multiple-static-file-copier",
     "@parcel/reporter-bundle-analyzer"
   ]
